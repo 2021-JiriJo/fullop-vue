@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/vue-material.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/theme/default.css">
+  </head>
+
+  <body>
+    <div id="root" class='md-app'>
+        <div class="md-layout">
+          <h1 class='md-layout-item md-size-100 md-title'>To Do</h1>
+          <div class="md-layout-item">
+            <form>
+              <span class="md-field">
+                <label>todo</label>
+                <input type="text" v-model="newLine" class='md-input'>
+              </span>
+              <button v-on:click="addData" class='md-raised'>Add</button>
+            </form>
+            <ol>
+                <todo-item
+                    v-for="item in dataList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+                ></todo-item>
+            </ol>
+          </div>
+        </div>
+    </div>
+</body>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-material"></script>
+    <script>
+
+      Vue.component('todo-item',{
+          props: ['todo'],
+          template: '<li>{{ todo.text }}</li>'
+      });
+  
+      var app = new Vue({
+          el: '#root',
+          data: {
+              newLine: '',
+              dataList:[]
+          },
+          methods: {
+              addData: function(e) {
+                  e.preventDefault();
+                  this.dataList.push({"id":this.dataList.length+1, "text":this.newLine});
+              }
+          }
+      })
+  </script>
+  </body>
+</html>
