@@ -1,0 +1,35 @@
+<html lang='ko'>
+    <head>
+        <title>Hello Vue</title>
+    </head>
+    <body>
+      <div id="example">
+        <h1 v-show="ok">안녕하세요!</h1>
+        <input
+          type="checkbox"
+          v-model="toggle"
+          true-value="yes"
+          false-value="no"
+        >
+        <input type="radio" v-model="pick1" v-bind:value="a" v-bind:name="b">
+        <input type="radio" v-model="pick2" v-bind:value="c" v-bind:name="b">
+      </div>
+      
+
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+            var vm = new Vue({
+            el: '#example',
+            data: {
+              ok: true,
+              toggle: '',
+              pick1: false,
+              pick2: false,
+              a: 'foo',
+              c: 'bar',
+              b:'hello'
+              }
+            })           
+    </script>
+</html>
